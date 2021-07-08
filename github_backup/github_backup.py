@@ -787,7 +787,10 @@ def backup_repositories(args, output_directory, repositories):
             backup_milestones(args, repo_cwd, repository, repos_template)
 
         if args.include_labels or args.include_everything:
+          if args.include_hooks:
             backup_labels(args, repo_cwd, repository, repos_template)
+          else:
+            log_info('AODN:  Skipping hooks processing for --all [SQB]')
 
         if args.include_hooks or args.include_everything:
             backup_hooks(args, repo_cwd, repository, repos_template)
